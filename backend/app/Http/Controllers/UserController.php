@@ -11,24 +11,28 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-
+    public function index()
+    {
+        return User::all();
+    }
     public function register(Request $request)
     {
         $request->validate([
             'nombre' => 'required',
+            'apellido' => 'required',
             'email' => 'required|email|unique:users',
             'telefono' => 'required',
-            'rol' => 'required',
+          
             'password' => 'required|confirmed'
         ]);
 
-        $User = new user();
-        $User->nombre = $request->nombre;
-        $User->email = $request->email;
-        $User->telefono = $request->telefono;
-        $User->rol = $request->rol;
-        $User->password = Hash::make($request->password);
-        $User->save();
+        $usuario = new User();
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->email = $request->email;
+        $usuario->telefono = $request->telefono;
+        $usuario->password = Hash::make($request->password);
+        $usuario->save();
         return response()->json([
             "status" => 1,
             "msg" => "Registro exitoso",
@@ -46,7 +50,7 @@ class UserController extends Controller
         if (isset($user->id)) {
             if (Hash::check($request->password, $user->password)) {
                 //get user
-                $userData = DB::select("select id, nombre, email, telefono, rol from users where email = '$request->email'");
+                $userData = DB::select("select id, nombre, email, telefono,apellido from users where email = '$request->email'");
                 //crear tokem
                 $token = $user->createToken("auth_token")->plainTextToken;
                 return response()->json([

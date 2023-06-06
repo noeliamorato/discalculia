@@ -25,13 +25,13 @@ class UsersController extends Controller
             'password' => 'required|confirmed'
         ]);
         
-        $User = new user();
-        $User->nombre = $request->nombre;
-        $User->apellido = $request->apellido;
-        $User->email = $request->email;
-        $User->telefono = $request->telefono;
-        $User->password = Hash::make($request->password);
-        $User->save();
+        $usuario = new User();
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->email = $request->email;
+        $usuario->telefono = $request->telefono;
+        $usuario->password = Hash::make($request->password);
+        $usuario->save();
         return response()->json([
             "status" => 1,
             "msg" => "Registro exitoso",

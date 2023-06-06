@@ -16,7 +16,6 @@ class User extends Authenticatable
         'nombre',
         'email',
         'telefono',
-        'rol',
         'password',
     ];
     public $timestamps = false;
