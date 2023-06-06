@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nivel_dificultad');
             $table->string('imagen');
             $table->string('puntuacion');
+            $table->foreignId('id_categorias')->constrained('categorias')
+            ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();       
         });
     }

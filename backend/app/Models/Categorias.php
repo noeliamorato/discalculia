@@ -10,6 +10,6 @@ class Categorias extends Model
     use HasFactory;
     protected $fillable = [
         'nombre_categoria',
-        'id_juegos',
+
     ];
 }

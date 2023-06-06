@@ -18,7 +18,6 @@ class CategoriasController extends Controller
     {
         $categ=new Categorias();
         $categ->nombre_categoria=$request->nombre_categoria;
-        $categ->id_juegos=$request->id_juegos;
         $categ->save();
         return $categ;
     }

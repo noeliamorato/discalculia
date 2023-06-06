@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_categoria');
             $table->timestamps();
-            $table->foreignId('id_juegos')->constrained('juego')
-            ->cascadeOnUpdate()->cascadeOnDelete();
+         
             
         });
     }
